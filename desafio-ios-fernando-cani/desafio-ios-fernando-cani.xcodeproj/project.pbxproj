@@ -511,7 +511,7 @@
 				CODE_SIGN_ENTITLEMENTS = "desafio-ios-fernando-cani/resources/desafio-ios-fernando-cani.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = DXQA6Z45VT;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "desafio-ios-fernando-cani/resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -532,7 +532,7 @@
 				CODE_SIGN_ENTITLEMENTS = "desafio-ios-fernando-cani/resources/desafio-ios-fernando-cani.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_TEAM = DXQA6Z45VT;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "desafio-ios-fernando-cani/resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -553,7 +553,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DXQA6Z45VT;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "desafio-ios-fernando-caniTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -576,7 +576,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DXQA6Z45VT;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "desafio-ios-fernando-caniTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
