@@ -26,9 +26,7 @@
 # Screenshots
 
 ### LightMode
-<img src="screenshots/1_1.PNG" width="200" height="432,8502">
-<img src="screenshots/2_1.PNG" width="200" height="432,8502">
-<img src="screenshots/3_1.PNG" width="200" height="432,8502">
+<img src="screenshots/1_1.PNG" width="200" height="432,8502"> <img src="screenshots/2_1.PNG" width="200" height="432,8502"> <img src="screenshots/3_1.PNG" width="200" height="432,8502">
 
 ### DarkMode
 <img src="screenshots/1_2.PNG" width="200" height="432,8502">
