@@ -11,13 +11,16 @@ import UIKit
 class ComicDetailViewController: BaseViewController {
 
     @IBOutlet weak var stackViewImage: UIStackView!
-    @IBOutlet weak var progress: UIActivityIndicatorView!
     @IBOutlet weak var viewIcon: UIView!
     @IBOutlet weak var imgIcon: UIImageView!
+    @IBOutlet weak var progress: UIActivityIndicatorView!
+    @IBOutlet weak var stackViewTitle: UIStackView!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var stackViewDescription: UIStackView!
     @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var btnDescription: UIButton!
+    @IBOutlet weak var stackViewPrice: UIStackView!
+    @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet var cstImageW: NSLayoutConstraint!
     @IBOutlet var cstImageH: NSLayoutConstraint!
     
@@ -34,19 +37,47 @@ class ComicDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "#\(self.comic.issueNumber!)"
+        self.accessibilityElements = [self.navigationItem.titleView, self.stackViewTitle!, self.stackViewDescription!, self.stackViewPrice!]
+        if let issueNumber = self.comic.issueNumber {
+            self.title = "#\(issueNumber)"
+            self.navigationItem.titleView?.accessibilityLabel = "issue number \(issueNumber)"
+        } else {
+            self.title = "Most expensive magazine"
+            self.navigationItem.titleView?.accessibilityLabel = "Most expensive magazine"
+        }
         self.setupView()
     }
     
     func setupView() {
-        self.lblTitle.text = self.comic.title
-        self.lblDescription.text = self.comic.resultDescription
+        self.progress.isAccessibilityElement = false
+        self.stackViewTitle.isAccessibilityElement = true
+        self.stackViewDescription.isAccessibilityElement = true
+        self.stackViewPrice.isAccessibilityElement = true
+        if let title = self.comic.title {
+            self.lblTitle.text = title
+            self.stackViewTitle.accessibilityLabel = "title: \(title)"
+            self.stackViewTitle.isHidden = false
+        } else {
+            self.stackViewTitle.isHidden = true
+        }
+        if let resultDescription = self.comic.resultDescription {
+            self.lblDescription.text = resultDescription
+            self.stackViewDescription.accessibilityLabel = "description: \(resultDescription)"
+            self.stackViewDescription.isHidden = false
+        } else {
+            self.stackViewDescription.isHidden = true
+        }
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
         currencyFormatter.numberStyle = .currency
         currencyFormatter.locale = Locale(identifier: "en_US")
-        let priceString = currencyFormatter.string(from: NSNumber(value: self.comic.prices!.first!.price!))!
-        self.lblPrice.text = priceString
+        if let prices = self.comic.prices, let first = prices.first, let price = first.price, let priceString = currencyFormatter.string(from: NSNumber(value: price)) {
+            self.lblPrice.text = priceString
+            self.stackViewPrice.accessibilityLabel = "price: \(priceString)"
+            self.stackViewPrice.isHidden = false
+        } else {
+            self.stackViewPrice.isHidden = true
+        }
         self.setupImage()
     }
     
@@ -90,7 +121,7 @@ class ComicDetailViewController: BaseViewController {
     func imageTapped(_ sender: UITapGestureRecognizer) {
         if let keyWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).map({$0 as? UIWindowScene}).compactMap({$0}).first?.windows.filter({$0.isKeyWindow}).first,
             let imageView = self.imgIcon,
-            imageView.image != nil {
+            let image = imageView.image {
             let bgView = UIView()
             bgView.frame = keyWindow.frame
             bgView.backgroundColor = .systemBackground
@@ -118,14 +149,12 @@ class ComicDetailViewController: BaseViewController {
             self.imgIcon.alpha = 0
             UIView.animate(withDuration: 0.75, animations: {
                 let wView = UIScreen.main.bounds.width
-                let hView = (self.imgIcon.image!.size.height * wView) / self.imgIcon.image!.size.width
+                let hView = (image.size.height * wView) / image.size.width
                 newView.frame = CGRect(x: 0, y: (UIScreen.main.bounds.height / 2) - (hView / 2), width: wView, height: hView)
                 let wImage = UIScreen.main.bounds.width
-                let hImage = (self.imgIcon.image!.size.height * wImage) / self.imgIcon.image!.size.width
+                let hImage = (image.size.height * wImage) / image.size.width
                 newImageView.frame = CGRect(x: 0, y: 0, width: wImage, height: hImage)
                 bgView.alpha = 1
-                //newImageView.frame = keyWindow.frame
-                //bgView.alpha = 1
             })
         }
     }

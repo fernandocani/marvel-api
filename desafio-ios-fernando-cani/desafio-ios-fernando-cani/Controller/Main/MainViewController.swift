@@ -10,8 +10,8 @@ import UIKit
 
 class MainViewController: BaseViewController {
 
-    @IBOutlet weak var progress: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var progress: UIActivityIndicatorView!
     
     var characters: [MarvelCharacters] = Array()
     
@@ -23,7 +23,9 @@ class MainViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.accessibilityElements = [self.tableView!]
         self.title = "Marvel Heroes"
+        self.navigationItem.titleView?.accessibilityLabel = "Marvel Heroes"
         self.setupView()
         self.loadCharacters(fake: fake)
     }
@@ -41,6 +43,7 @@ class MainViewController: BaseViewController {
     }
     
     func setupView() {
+        self.progress.isAccessibilityElement = false
         self.tableView.isHidden = true
         self.tableView.register(UINib(nibName: "CharacterListTableViewCell", bundle: nil), forCellReuseIdentifier: "CharacterListTableViewCell")
     }
@@ -56,10 +59,10 @@ class MainViewController: BaseViewController {
     }
     
     func handleResults(characters: MarvelCharacterDataContainer) {
-        if let c = characters.results {
+        if let c = characters.results, let offset = characters.offset, let total = characters.total {
             self.characters.append(contentsOf: c)
-            self.currentIndex = characters.offset! + self.limit
-            self.numberOfItens = characters.total!
+            self.currentIndex = offset + self.limit
+            self.numberOfItens = total
         }
         self.loading = false
         if self.firstTime {

@@ -13,22 +13,26 @@ class CharacterDetailViewController: BaseViewController {
     @IBOutlet weak var viewIcon: UIView!
     @IBOutlet weak var imgIcon: UIImageView!
     @IBOutlet weak var stackViewName: UIStackView!
-    @IBOutlet weak var stackViewDescription: UIStackView!
     @IBOutlet weak var lblNameTitle: UILabel!
-    @IBOutlet weak var lblDescriptionTitle: UILabel!
     @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var stackViewDescription: UIStackView!
+    @IBOutlet weak var lblDescriptionTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var btnDescription: UIButton!
     @IBOutlet weak var btnMagazine: UIButton!
     @IBOutlet weak var progress: UIActivityIndicatorView!
-    @IBOutlet weak var btnDescription: UIButton!
     
     var character: MarvelCharacters
     var loading: Bool = false {
         didSet {
             DispatchQueue.main.async {
                 switch self.loading {
-                case true: self.progress.startAnimating()
-                case false: self.progress.stopAnimating()
+                case true:
+                    self.progress.startAnimating()
+                    UIAccessibility.post(notification: .announcement, argument: "loading. please wait")
+                case false:
+                    self.progress.stopAnimating()
+                    UIAccessibility.post(notification: .announcement, argument: "load done")
                 }
             }
         }
@@ -45,16 +49,26 @@ class CharacterDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = self.character.name
+        self.accessibilityElements = [self.stackViewName!, self.stackViewDescription!, self.btnMagazine!]
+        if let name = self.character.name {
+            self.title = name
+            self.navigationItem.titleView?.accessibilityLabel = name
+        } else {
+            self.title = "character detail"
+            self.navigationItem.titleView?.accessibilityLabel = "character detail"
+        }
         self.setupView()
     }
     
     func setupView() {
+        self.progress.isAccessibilityElement = false
         if let image = Service.shared.readImage(type: .avatar, withFileName: self.character.thumbnail.pathString()) {
             self.imgIcon.image = image
             self.viewIcon.dropShadow()
             self.imgIcon.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.imageTapped(_:))))
             self.viewIcon.isHidden = false
+            self.viewIcon.isAccessibilityElement = false
+            self.imgIcon.isAccessibilityElement = false
         } else {
             self.viewIcon.isHidden = true
         }
@@ -62,6 +76,8 @@ class CharacterDetailViewController: BaseViewController {
             self.lblNameTitle.text = "Name: "
             self.lblName.text = name
             self.stackViewName.isHidden = false
+            self.stackViewName.isAccessibilityElement = true
+            self.stackViewName.accessibilityLabel = "Name: \(name)"
         } else {
             self.stackViewName.isHidden = true
         }
@@ -69,20 +85,23 @@ class CharacterDetailViewController: BaseViewController {
             self.lblDescriptionTitle.text = "Description: "
             self.lblDescription.text = description
             self.stackViewDescription.isHidden = false
+            self.stackViewDescription.isAccessibilityElement = true
+            self.stackViewDescription.accessibilityLabel = "description: \(description)"
         } else {
             self.stackViewDescription.isHidden = true
         }
-        self.btnMagazine.setTitle("Expensivest magazine!", for: .normal)
+        self.btnMagazine.setTitle("most expensive magazine!", for: .normal)
         self.btnMagazine.setTitleColor(UIColor.systemBlue, for: .normal)
         self.btnMagazine.layer.borderColor = UIColor.systemBlue.cgColor
         self.btnMagazine.layer.borderWidth = 1
         self.btnMagazine.layer.cornerRadius = 4
         self.btnMagazine.layer.masksToBounds = true
+        self.btnMagazine.accessibilityHint = "load the moast expensive magazine for this hero"
     }
     
-    func task() {
+    func task(id: String) {
         self.loading = true
-        Service.shared.taskComics(id: String(self.character.id!), callbackSuccess: { (comics) in
+        Service.shared.taskComics(id: id, callbackSuccess: { (comics) in
             self.handleResult(comics: comics)
         }, callbackError: { (error) in
             self.loading = false
@@ -124,7 +143,9 @@ class CharacterDetailViewController: BaseViewController {
                     self.handleResult(comics: comics)
                 }
             } else {
-                self.task()
+                if let id = self.character.id {
+                    self.task(id: String(id))
+                }
             }
         }
     }
@@ -133,7 +154,7 @@ class CharacterDetailViewController: BaseViewController {
     func imageTapped(_ sender: UITapGestureRecognizer) {
         if let keyWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).map({$0 as? UIWindowScene}).compactMap({$0}).first?.windows.filter({$0.isKeyWindow}).first,
             let imageView = self.imgIcon,
-            imageView.image != nil {
+            let image = imageView.image {
             let bgView = UIView()
             bgView.frame = keyWindow.frame
             bgView.backgroundColor = .systemBackground
@@ -161,10 +182,10 @@ class CharacterDetailViewController: BaseViewController {
             self.imgIcon.alpha = 0
             UIView.animate(withDuration: 0.75, animations: {
                 let wView = UIScreen.main.bounds.width
-                let hView = (self.imgIcon.image!.size.height * wView) / self.imgIcon.image!.size.width
+                let hView = (image.size.height * wView) / image.size.width
                 newView.frame = CGRect(x: 0, y: (UIScreen.main.bounds.height / 2) - (hView / 2), width: wView, height: hView)
                 let wImage = UIScreen.main.bounds.width
-                let hImage = (self.imgIcon.image!.size.height * wImage) / self.imgIcon.image!.size.width
+                let hImage = (image.size.height * wImage) / image.size.width
                 newImageView.frame = CGRect(x: 0, y: 0, width: wImage, height: hImage)
                 bgView.alpha = 1
             })

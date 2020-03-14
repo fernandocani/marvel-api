@@ -10,10 +10,10 @@ import UIKit
 
 class CharacterListTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var progress: UIActivityIndicatorView!
     @IBOutlet weak var viewIcon: UIView!
     @IBOutlet weak var imgIcon: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var progress: UIActivityIndicatorView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,9 +27,12 @@ class CharacterListTableViewCell: UITableViewCell {
         self.imgIcon.layer.borderColor = UIColor.white.cgColor
         self.imgIcon.layer.borderWidth = 4
         self.setupImage(character: character)
+        self.accessibilityTraits = .button
+        self.accessibilityHint = "double tap do see more details"
     }
     
     func setupImage(character: MarvelCharacters) {
+        self.progress.isAccessibilityElement = false
         self.viewIcon.dropShadow()
         self.progress.startAnimating()
         if let image = Service.shared.readImage(type: .avatar, withFileName: character.thumbnail.pathString()) {
