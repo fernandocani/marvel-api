@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CharacterDetailViewController" customModule="desafio_ios_fernando_cani" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CharacterDetailViewController" customModule="marvel" customModuleProvider="target">
             <connections>
                 <outlet property="btnDescription" destination="QUf-3M-3Ah" id="mZB-pe-4I8"/>
                 <outlet property="btnMagazine" destination="tMK-0e-AbY" id="W4U-KH-X4U"/>
@@ -45,6 +45,10 @@
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        <bool key="isElement" value="NO"/>
+                                    </accessibility>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="V6R-tC-5ja" secondAttribute="bottom" id="AnH-ZF-eDA"/>
                                         <constraint firstItem="V6R-tC-5ja" firstAttribute="top" secondItem="dPn-E3-enI" secondAttribute="top" id="IGF-dK-Ry6"/>
@@ -73,12 +77,20 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lblNameTitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVI-ue-l8m">
                                                                     <rect key="frame" x="0.0" y="0.0" width="382" height="24"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lblName" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQz-KV-xHN">
                                                                     <rect key="frame" x="0.0" y="32" width="382" height="19.5"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -90,12 +102,20 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lblDescriptionTitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJq-AP-K4l">
                                                                     <rect key="frame" x="0.0" y="0.0" width="382" height="24"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
                                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lblDescription" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fV-KJ-4aR">
                                                                     <rect key="frame" x="0.0" y="32" width="382" height="30"/>
+                                                                    <accessibility key="accessibilityConfiguration">
+                                                                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                                                                        <bool key="isElement" value="NO"/>
+                                                                    </accessibility>
                                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -108,9 +128,9 @@
                                                     <rect key="frame" x="0.0" y="161.5" width="382" height="40"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMK-0e-AbY">
-                                                            <rect key="frame" x="91" y="0.0" width="200" height="40"/>
+                                                            <rect key="frame" x="71" y="0.0" width="240" height="40"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="200" id="5NB-qx-RDt"/>
+                                                                <constraint firstAttribute="width" constant="240" id="5NB-qx-RDt"/>
                                                                 <constraint firstAttribute="height" constant="40" id="J2h-2X-UCn"/>
                                                             </constraints>
                                                             <state key="normal" title="btnMagazine"/>
@@ -138,6 +158,9 @@
                         </stackView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QUf-3M-3Ah">
                             <rect key="frame" x="16" y="335.5" width="382" height="30"/>
+                            <accessibility key="accessibilityConfiguration">
+                                <bool key="isElement" value="NO"/>
+                            </accessibility>
                             <connections>
                                 <action selector="btnDescription:" destination="-1" eventType="touchUpInside" id="dCH-o5-tpx"/>
                             </connections>

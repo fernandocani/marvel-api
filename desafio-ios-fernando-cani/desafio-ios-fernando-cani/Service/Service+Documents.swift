@@ -60,14 +60,16 @@ extension Service {
     
     func clearDocumentDirectory() {
         let fileManager = FileManager.default
-        let path = self.documentDirectory()!.path
-        do {
-            let filePaths = try fileManager.contentsOfDirectory(atPath: path)
-            for filePath in filePaths {
-                try fileManager.removeItem(atPath: path + "/" + filePath)
+        if let documentDirectory = self.documentDirectory() {
+            let path = documentDirectory.path
+            do {
+                let filePaths = try fileManager.contentsOfDirectory(atPath: path)
+                for filePath in filePaths {
+                    try fileManager.removeItem(atPath: path + "/" + filePath)
+                }
+            } catch {
+                print("Could not clear temp folder: \(error)")
             }
-        } catch {
-            print("Could not clear temp folder: \(error)")
         }
     }
     
