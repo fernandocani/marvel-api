@@ -26,12 +26,11 @@
 # Screenshots
 
 ### LightMode
-<img src="screenshots/1_1.PNG" width="100" height="216,4251">
-![1-LightMode](screenshots/1_1.PNG | width=100)
-![2-LightMode](screenshots/2_1.PNG)
-![3-LightMode](screenshots/3_1.PNG)
+<img src="screenshots/1_1.PNG" width="200" height="432,8502">
+<img src="screenshots/2_1.PNG" width="200" height="432,8502">
+<img src="screenshots/3_1.PNG" width="200" height="432,8502">
 
 ### DarkMode
-![1-DarkMode](screenshots/1_2.PNG)
-![2-DarkMode](screenshots/2_2.PNG)
-![3-DarkMode](screenshots/3_2.PNG)
+<img src="screenshots/1_2.PNG" width="200" height="432,8502">
+<img src="screenshots/2_2.PNG" width="200" height="432,8502">
+<img src="screenshots/3_2.PNG" width="200" height="432,8502">
