@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DF75B49024184A93001C36E2"
-               BuildableName = "desafio-ios-fernando-cani.app"
+               BuildableName = "marvel.app"
                BlueprintName = "desafio-ios-fernando-cani"
                ReferencedContainer = "container:desafio-ios-fernando-cani.xcodeproj">
             </BuildableReference>
@@ -56,7 +56,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DF75B49024184A93001C36E2"
-            BuildableName = "desafio-ios-fernando-cani.app"
+            BuildableName = "marvel.app"
             BlueprintName = "desafio-ios-fernando-cani"
             ReferencedContainer = "container:desafio-ios-fernando-cani.xcodeproj">
          </BuildableReference>
@@ -73,7 +73,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DF75B49024184A93001C36E2"
-            BuildableName = "desafio-ios-fernando-cani.app"
+            BuildableName = "marvel.app"
             BlueprintName = "desafio-ios-fernando-cani"
             ReferencedContainer = "container:desafio-ios-fernando-cani.xcodeproj">
          </BuildableReference>
