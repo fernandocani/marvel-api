@@ -27,10 +27,10 @@
 
 ### LightMode
 ![1-LightMode](screenshots/1_1.PNG)
-![2-LightMode](screenshots/1_2.png)
-![3-LightMode](screenshots/1_3.png)
+![2-LightMode](screenshots/1_2.PNG)
+![3-LightMode](screenshots/1_3.PNG)
 
 ### DarkMode
-![1-DarkMode](screenshots/2_1.png)
-![2-DarkMode](screenshots/2_2.png)
-![3-DarkMode](screenshots/2_3.png)
+![1-DarkMode](screenshots/2_1.PNG)
+![2-DarkMode](screenshots/2_2.PNG)
+![3-DarkMode](screenshots/2_3.PNG)
